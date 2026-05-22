@@ -1,38 +1,15 @@
-import Image from "next/image";
-import TeamCard from "./components/TeamCard";
-import { Row, Team } from "./types";
-import TableRow from "./components/TableRow";
+import Table from "./components/Table";
 
-export default function Home() {
-  const rowTest: Row = {
-    "points": 18,
-    "teams": [
-      {
-        "id": 1767,
-        "tla": "FBP",
-        "crest": "https://crests.football-data.org/1767.png",
-        "position": 15,
-        "points": 18
-      },
-      {
-        "id": 6685,
-        "tla": "SAN",
-        "crest": "https://crests.football-data.org/6685.png",
-        "position": 16,
-        "points": 18
-      },
-      {
-        "id": 1779,
-        "tla": "COR",
-        "crest": "https://crests.football-data.org/1779.png",
-        "position": 17,
-        "points": 18
-      }
-    ]
-  }
+export default async function Home() {
+  const res = await fetch("http://localhost:3000/api/table");
+  const rows = await res.json();
+
   return (
-    <main>
-      <TableRow row={rowTest}/>
+    <main className="flex flex-col items-center gap-5 px-1 py-10">
+      <h1 className="text-3xl text-center">Brasileirudo Cann tabble</h1>
+      <div className="w-1/1 md:w-4/5">
+        <Table rows={rows}/>
+      </div>
     </main>
   );
 }

@@ -23,7 +23,7 @@ export async function GET() {
     const teamIndex = leaderPoints - team.points;
     rows[teamIndex].teams.push({
       id: team.team.id,
-      tla: team.team.tla,
+      shortName: team.team.shortName,
       crest: team.team.crest,
       position: team.position,
       points: team.points
