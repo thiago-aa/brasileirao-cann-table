@@ -8,12 +8,17 @@ interface TeamProps {
 export default function TeamCard(props: TeamProps){
   const { crest, shortName, position } = props.team;
   const { className } = props
-  
+  const baseColor = getZoneColor(position);
+  const darkColor = `${getZoneColor(position)}-dark`;
+  const linearGradient = `linear-gradient(to right, var(--color-${darkColor}), var(--color-${baseColor}), var(--color-${darkColor}))`;
   return (
-    <div className={`items-center gap-1 inline-flex h-1/1 flex-1 justify-center ${className} ${getZoneColor(position)}`}>
+    <div 
+      className={`items-center gap-1 inline-flex h-1/1 flex-1 justify-center ${className} border-2 m-0.5 rounded-sm`} 
+      style={{ borderColor: `var(--color-${baseColor})`, background: linearGradient }}
+    >
       <p className="flex items-center justify-center rounded-full font-bold text-white w-3 aspect-square text-[9px]">{`${position}° `}</p>
       <img className="w-6 h-6 md:w-8 md:h-8 " src={crest} alt={`${shortName} escudo`} />
-      <p className="text-xs text-white">{shortName}</p>
+      <p className="text-xs text-white font-secondary">{shortName}</p>
     </div>
   )
 }

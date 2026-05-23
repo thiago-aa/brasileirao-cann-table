@@ -1,17 +1,17 @@
   const getZoneColor = (position: number) => {
     if(position <= 4) {
-      return 'bg-[#3B8AE1]';
+      return 'liberta';
     }
     if(position === 5) {
-      return 'bg-[#5DCFE8]';
+      return 'pre';
     }
     if(position <= 11) {
-      return 'bg-[#F89D52]';
+      return 'sula';
     }
     if(position <=16) {
-      return 'bg-[#b8b8b8]';
+      return 'intermed';
     }
-    return 'bg-[#ED645D]';
+    return 'z4';
   }
 
   export default getZoneColor;

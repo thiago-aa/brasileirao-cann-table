@@ -11,10 +11,10 @@ export default function TableRow(props: TableRowProps) {
   const { className } = props;
   return (
     <div className="inline-flex items-center h-10 md:h-14">
-      <div className=" bg-black text-white min-w-6.5 h-1/1 p-1 flex items-center">
+      <div className="text-white w-6.5 h-1/1 p-1 flex items-center font-primary">
         {points}
       </div>
-      <div className={`flex items-center flex-1 h-1/1 ${className}`}>
+      <div className={`flex items-center flex-1 h-1/1 border-dashed border-b border-b-gray-400 p-0.5`}>
         {
           teams.map((value, i) => {
             const showBorder = teams.length > 1 && i < teams.length - 1;
