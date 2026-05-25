@@ -2,11 +2,11 @@ import { Team } from "../types";
 import getZoneColor from "@/utils/getZoneColor";
 interface TeamProps {
   team: Team,
-  className?: string
+  className?: string,
 }
 
 export default function TeamCard(props: TeamProps){
-  const { crest, shortName, position } = props.team;
+  const { crest, shortName, position} = props.team;
   const { className } = props
   const baseColor = getZoneColor(position);
   const darkColor = `${getZoneColor(position)}-dark`;

@@ -1,16 +1,19 @@
 import { Row } from "../types";
 import TeamCard from "./TeamCard";
+import ZoneBar from "./ZoneBar";
 
 interface TableRowProps {
   row: Row;
-  className?: string;
+  className: string;
+  zoneFirst: boolean;
+  zoneLast: boolean;
 }
 
 export default function TableRow(props: TableRowProps) {
   const { points, teams } = props.row; 
-  const { className } = props;
+  const { className, zoneFirst, zoneLast } = props;
   return (
-    <div className="inline-flex items-center h-10 md:h-14">
+    <div className="inline-flex items-center h-10 md:h-14 gap-1">
       <div className="text-white w-6.5 h-1/1 p-1 flex items-center font-primary">
         {points}
       </div>
@@ -22,6 +25,7 @@ export default function TableRow(props: TableRowProps) {
           })
         }
       </div>
+      <ZoneBar color={className} first={zoneFirst} last={zoneLast}/>
     </div>
   )
 }
