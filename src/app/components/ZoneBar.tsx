@@ -10,7 +10,7 @@ export default function ZoneBar(props: ZoneBarProps) {
 
   return (
     <div 
-      className={`h-1/1 border-b w-1 md:w-2.5 ${className}`}
+      className={`h-1/1 border-b w-1.5 mr-2 md:w-2.5 ${className}`}
       style={{ borderColor: `var(--color-${color})`, background: `var(--color-${color})` }}
     >
 

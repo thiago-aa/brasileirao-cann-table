@@ -21,7 +21,7 @@ export default function TableRow(props: TableRowProps) {
         {
           teams.map((value, i) => {
             const showBorder = teams.length > 1 && i < teams.length - 1;
-            return <TeamCard team={value} key={value.id} className={showBorder ? 'border-r' : ''}/>
+            return <TeamCard team={value} key={value.id} className={showBorder ? 'border-r' : ''} compact={teams.length >= 3}/>
           })
         }
       </div>

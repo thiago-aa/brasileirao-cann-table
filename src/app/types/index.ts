@@ -1,6 +1,7 @@
 export type Team = {
   id: number            
   shortName: string
+  tla: string
   crest: string
   position: number
   points: number

@@ -24,6 +24,7 @@ export async function GET() {
     rows[teamIndex].teams.push({
       id: team.team.id,
       shortName: team.team.shortName,
+      tla: team.team.tla,
       crest: team.team.crest,
       position: team.position,
       points: team.points
