@@ -25,7 +25,6 @@ import { lstat } from "fs";
 
     const getZonePosition = (row: Row, i: number) => {
       if(row.teams.length > 0 && row.teams[0].position === 1) {    
-        console.log('caiu no primeiro caso')
         return {
           first: true,
           last: false,
@@ -41,8 +40,7 @@ import { lstat } from "fs";
       const nextRowColor = getLastTeamColor(i + 1);
       const prevRowColor = getLastTeamColor(i - 1);
       const rowColor = getLastTeamColor(i);
-      console.log(`Pontos: ${row.points}.\n Cor da linha: ${rowColor}.\n Cor da linha anterior: ${prevRowColor}.\n Cor da próxima linha: ${nextRowColor} ${rowColor !== prevRowColor && rowColor !== nextRowColor}`);
-
+      
       if(nextRowColor === prevRowColor) {
         return { 
           first: false, 
