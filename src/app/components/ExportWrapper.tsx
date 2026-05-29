@@ -26,8 +26,8 @@ export default function ExportWrapper(props: ExportWrapperProps) {
 
   return (
   <>
-    <button onClick={() => exportPNG()} className="hidden" id="export"/>
-    <div ref={ref} className="w-1/1">
+    <button onClick={() => exportPNG()} className="opacity-0 pointer-events-none absolute" id="export"/>
+    <div ref={ref} className="w-[900] p-7 bg-background">
       {children}
     </div>
   </>

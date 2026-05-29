@@ -2,6 +2,7 @@
   import { Row } from "../types"
   import TableRow from "./TableRow";
 import { lstat } from "fs";
+import Legend from "./Legend";
 
   interface TableProps {
     rows: Row[];
@@ -68,14 +69,15 @@ import { lstat } from "fs";
 
     return (
       <>
-      <div className="flex-col flex">
-        {
-          rows.map((row, i) => {
-            const { first, last } = getZonePosition(row, i)
-            return <TableRow row={row} key={row.points} className={`${getLastTeamColor(i)}`} zoneFirst={first} zoneLast={last}/>
-          })
-        }
-      </div>
+        <div className="flex-col flex">
+          {
+            rows.map((row, i) => {
+              const { first, last } = getZonePosition(row, i)
+              return <TableRow row={row} key={row.points} className={`${getLastTeamColor(i)}`} zoneFirst={first} zoneLast={last}/>
+            })
+          }
+        </div>
+        <Legend/>
       </>
     )
   }
