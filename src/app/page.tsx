@@ -1,12 +1,10 @@
 import DownloadButton from "./components/DownloadButton";
 import ExportWrapper from "./components/ExportWrapper";
-import Legend from "./components/Legend";
 import Table from "./components/Table";
-import { Download } from "lucide-react"
+import { getTable } from "./lib/getTable";
 
 export default async function Home() {
-  const res = await fetch("http://localhost:3000/api/table");
-  const rows = await res.json();
+  const rows = await getTable();
 
   return (
     <main className="flex flex-col items-center gap-5 px-1 py-10 bg-background text-off-white">
