@@ -5,13 +5,16 @@ import { useContext } from "react";
 import { ExportContext } from "../context/ExportContext";
 
 export default function DownloadButton() {
-  const {isLoading} = useContext(ExportContext);
+  const {isLoading, setIsLoading, setTriggerDownload} = useContext(ExportContext);
 
   return (
     <button 
       className= "flex items-center gap-2 px-2 md:px-10 aspect-square justify-center bg-off-white text-xs text-off-black rounded-md cursor-pointer h-10 md:h-1/1 absolute right-2  md:right-0"
-      onClick={() => document.getElementById('export')?.click() }
-      onTouchStart={() => document.getElementById('export')?.click()}
+      onClick={() => {
+        if(isLoading) return;
+        setIsLoading(true);
+        setTriggerDownload(true);
+      }}
       data-ignore
     >
       {
@@ -21,11 +24,11 @@ export default function DownloadButton() {
           </>
         ) : (
           <>
-            <Download size={16}/>
+            <Download size={18}/>
           </>
         )
       }
-            <span className="hidden md:block">
+            <span className="hidden md:block text-sm">
               Download
             </span>
     </button>

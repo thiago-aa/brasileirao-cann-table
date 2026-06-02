@@ -11,8 +11,9 @@ interface ExportProviderProps {
 export default function ExportProvider(props: ExportProviderProps) {
   const {children} = props;
   const [isLoading, setIsLoading] = useState(false);
+  const [triggerDownload, setTriggerDownload] = useState(false)
   return (
-    <ExportContext.Provider value={{isLoading, setIsLoading}}>
+    <ExportContext.Provider value={{isLoading, setIsLoading, setTriggerDownload, triggerDownload}}>
       {children}
     </ExportContext.Provider>
   )
