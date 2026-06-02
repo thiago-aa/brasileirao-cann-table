@@ -15,12 +15,13 @@ import Legend from "./Legend";
       if(rows[i].teams.length > 0) {
         return getZoneColor(rows[i].teams[0].position);
       }
-      let prevIndex = i - 1;
-      while(rows[prevIndex].teams.length === 0 ) {
-        prevIndex--;
+      let nextIndex = i + 1;
+      while(rows[nextIndex].teams.length === 0 ) {
+        nextIndex++;
       }
-      const filledRow = rows[prevIndex]
+      const filledRow = rows[nextIndex]
       const lastTeam = filledRow.teams.length - 1 ;
+      
       return getZoneColor(filledRow.teams[lastTeam].position);
     }
 
