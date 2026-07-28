@@ -25,7 +25,7 @@ export async function GET() {
       id: team.team.id,
       shortName: team.team.shortName,
       tla: team.team.tla,
-      crest: `/api/crest/${team.team.id}`,
+      crest: `/crests/${team.team.id}.png`,
       position: team.position,
       points: team.points
     });
