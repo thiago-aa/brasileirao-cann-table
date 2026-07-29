@@ -22,7 +22,7 @@ import Legend from "./Legend";
       const filledRow = rows[nextIndex]
       const lastTeam = filledRow.teams.length - 1 ;
       
-      return getZoneColor(filledRow.teams[lastTeam].position);
+      return getZoneColor(filledRow.teams[0].position);
     }
 
     const getZonePosition = (row: Row, i: number) => {
