@@ -25,7 +25,6 @@ export default function TableRow(props: TableRowProps) {
           })
         }
       </div>
-      <ZoneBar color={className} first={zoneFirst} last={zoneLast}/>
     </div>
   )
 }

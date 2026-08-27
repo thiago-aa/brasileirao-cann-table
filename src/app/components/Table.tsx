@@ -1,8 +1,8 @@
-  import getZoneColor from "@/utils/getZoneColor";
-  import { Row } from "../types"
-  import TableRow from "./TableRow";
-import { lstat } from "fs";
+import getZoneColor from "@/utils/getZoneColor";
+import { Row } from "../types"
+import TableRow from "./TableRow";
 import Legend from "./Legend";
+import ClassificationBar from "./ClassificationBar";
 
   interface TableProps {
     rows: Row[];
@@ -67,10 +67,22 @@ import Legend from "./Legend";
       }
     }
 
+    const zonesCount = rows.reduce((acc: { color: string, count: number }[], row, i) => {
+      const color = getLastTeamColor(i);
+      const last = acc[acc.length - 1];
+      if (last && last.color === color) {
+        last.count++;
+      } else {
+        acc.push({color: color, count: 1})
+      }
+      return acc;
+    }, [])
+
 
     return (
       <>
-        <div className="flex-col flex">
+      <div className="flex gap-3">
+        <div className="flex-col flex flex-1">
           {
             rows.map((row, i) => {
               const { first, last } = getZonePosition(row, i)
@@ -78,6 +90,8 @@ import Legend from "./Legend";
             })
           }
         </div>
+        <ClassificationBar zonesCount={zonesCount} />
+      </div>
         <Legend/>
       </>
     )
