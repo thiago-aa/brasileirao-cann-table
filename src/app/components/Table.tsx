@@ -81,7 +81,7 @@ import ClassificationBar from "./ClassificationBar";
 
     return (
       <>
-      <div className="flex gap-3">
+      <div className="flex gap-1 md:gap-3 m-1">
         <div className="flex-col flex flex-1">
           {
             rows.map((row, i) => {
