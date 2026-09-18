@@ -5,12 +5,16 @@ interface ClassificationBarProps {
 export default function ClassificationBar (props: ClassificationBarProps) {
   const { zonesCount } = props;
   const rowsCount = zonesCount.reduce((sum, zone) => (sum + zone.count), 0);
-  const zonePercentage = zonesCount.map((zone, i) => ({ color: zone.color, percentage: (zone.count / rowsCount) * 100 }));
+  const zonePercentage = zonesCount.map((zone, i) => ({ 
+      color: zone.color, 
+      percentage: (zone.count / rowsCount) * 100,
+      endSolid: zone.count > 3 ? (zone.count - 4) / zone.count * ((zone.count / rowsCount) * 100) : 0
+    }));
 
 
 const gradientStops = zonePercentage.reduce((acc: { stops: string[], accumulated: number }, zone) => {
   const start = acc.accumulated;
-  const end = start + zone.percentage * 0.5;
+  const end = start + zone.endSolid;
   acc.stops.push(`var(--color-${zone.color}) ${start}% ${end}%`);
   acc.accumulated = start + zone.percentage;
   return acc;
