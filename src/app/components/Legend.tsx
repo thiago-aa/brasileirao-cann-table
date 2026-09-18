@@ -1,5 +1,9 @@
 export default function Legend() {
   const legends = [{
+      label: 'Campeão',
+      color: 'champion'
+    },
+    {
       label: 'Libertadores',
       color: 'liberta'
     },

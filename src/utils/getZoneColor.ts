@@ -1,4 +1,7 @@
   const getZoneColor = (position: number) => {
+    if(position === 1) {
+      return 'champion';
+    }
     if(position <= 4) {
       return 'liberta';
     }

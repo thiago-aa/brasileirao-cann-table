@@ -4,6 +4,8 @@
   --color-off-white: #F8F8F7;
   --color-off-black: #131516;
   --color-background: #24282B;
+  --color-champion: #D4AF37;
+  --color-champion-dark: #967B27;
   --color-liberta: #5788ba;
   --color-liberta-dark: #3d5f82;
   --color-pre: #6daabe;
@@ -22,7 +24,9 @@
   --color-off-white: #F8F8F7;
   --color-off-black: #131516;
   --color-background: #24282B;
-  --color-liberta: #5788ba;
+  --color-champion: #D4AF37;
+  --color-champion-dark: #967B27;
+  --color-liberta: hsl(210, 42%, 54%);
   --color-liberta-dark: #3d5f82;
   --color-pre: #6daabe;
   --color-pre-dark: #5f94a7;
