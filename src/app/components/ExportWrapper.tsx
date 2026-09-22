@@ -20,10 +20,15 @@ export default function ExportWrapper(props: ExportWrapperProps) {
         const url = await toPng(ref.current, {
           filter: (node) => !node.hasAttribute?.('data-ignore')
         })
-        const link = document.createElement('a');
-        link.download ='cann-table.png';
-        link.href = url;
-        link.click();
+        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+        if (isSafari) {
+          window.open(url, '_blank');
+        } else {
+          const link = document.createElement('a');
+          link.download = 'cann-table.png';
+          link.href = url;
+          link.click();
+        }
       } catch(err) {
         console.error(err);
       } finally {
