@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useContext, useEffect, useRef } from "react";
-import { toPng } from "html-to-image";
+import { toBlob, toPng } from "html-to-image";
 import { ExportContext } from "../context/ExportContext";
 
 interface ExportWrapperProps {
@@ -13,30 +13,46 @@ export default function ExportWrapper(props: ExportWrapperProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   const { setIsLoading, setTriggerDownload, triggerDownload } = useContext(ExportContext);
-
   async function exportPNG() {
-    if(ref.current) {
-      try {
-        const url = await toPng(ref.current, {
-          filter: (node) => !node.hasAttribute?.('data-ignore')
-        })
+      if(ref.current) {
         const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-        if (isSafari) {
-          window.open(url, '_blank');
-        } else {
-          const link = document.createElement('a');
-          link.download = 'cann-table.png';
-          link.href = url;
-          link.click();
+        try {
+          if (isSafari) {
+            const blob = await toBlob(ref.current, {
+              filter: (node) => !node.hasAttribute?.('data-ignore')
+            });
+            if (!blob) {
+              throw new Error('Não foi possível gerar o PNG.');
+            }
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.download = 'cann-table.png';
+            link.href = url;
+            document.body.appendChild(link);
+            try {
+              link.click();
+            } finally {
+              link.remove();
+              // Keep the URL alive while the browser starts consuming the file.
+              window.setTimeout(() => URL.revokeObjectURL(url), 60_000);
+            }
+          } else {
+            const url = await toPng(ref.current, {
+              filter: (node) => !node.hasAttribute?.('data-ignore')
+            });
+            const link = document.createElement('a');
+            link.download = 'cann-table.png';
+            link.href = url;
+            link.click();
+          }
+        } catch(err) {
+          console.error(err);
+        } finally {
+          setIsLoading(false);
+          setTriggerDownload(false)
         }
-      } catch(err) {
-        console.error(err);
-      } finally {
-        setIsLoading(false);
-        setTriggerDownload(false)
       }
     }
-  }
   useEffect(() => {
     if (triggerDownload) {
       exportPNG();
