@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk, Chakra_Petch } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
+import { browserDiagnostics } from "./lib/browserDiagnostics";
 
 
 const spaceGrotesk = Space_Grotesk({
@@ -30,6 +31,10 @@ export default function RootLayout({
       lang="en"
       className={`${spaceGrotesk.variable} ${chakraPetch.variable} h-full antialiased`}
     >
+    <head>
+      {/* Native inline script runs before the Next.js runtime, even if it fails. */}
+      <script id="browser-diagnostics" dangerouslySetInnerHTML={{ __html: browserDiagnostics }} />
+    </head>
     <body className="min-h-full flex flex-col">
       {children}
       <Script
