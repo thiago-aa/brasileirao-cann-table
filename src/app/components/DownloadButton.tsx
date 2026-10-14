@@ -1,10 +1,14 @@
 'use client'
 
 import { Download, Loader } from "lucide-react";
-import { useContext } from "react";
+import { useContext, useEffect} from "react";
 import { ExportContext } from "../context/ExportContext";
 
 export default function DownloadButton() {
+  useEffect(() => {
+    alert("React carregou");
+  }, []);
+  
   const {isLoading, setIsLoading, setTriggerDownload} = useContext(ExportContext);
 
   return (
